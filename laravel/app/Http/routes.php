@@ -11,9 +11,8 @@
 |
 */
 
-Route::get('/', function() {
-    return view('welcome');
-});
-Route::get('/contacts/', function() {
-    return view('contact');
-});
+Route::get('/', [
+    'as' => 'home',
+    'uses' => 'PagesController@home'
+]);
+Route::resource('tasks', 'TasksController');
