@@ -6,9 +6,19 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use Auth;
 
 class PagesController extends Controller
 {
+    public function home()
+    {
+        if (Auth::check()) {
+            $id = Auth::id();
+            return view('pages.home')->with('user_id', $id);
+        } else {
+            return view('pages.home_guest');
+        }
+    }
     /**
      * Display a listing of the resource.
      *
